@@ -2,7 +2,6 @@ package com.example.treeassignment.controller;
 
 import com.example.treeassignment.handler.DateNotinvaledFormatException;
 import com.example.treeassignment.handler.InvalidDateRangeException;
-import com.example.treeassignment.model.ErrorResponse;
 import com.example.treeassignment.model.ResponseModel;
 import com.example.treeassignment.model.Statement;
 import com.example.treeassignment.model.dto.StatementDTO;
@@ -14,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.View;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -50,6 +46,7 @@ public class StatementController {
         Statement savedStatement = statementService.saveStatement(statement);
         return StatementMapper.convertToStatementDTO(savedStatement);
     }
+
     /**
      * Gets statement by date.
      *
@@ -59,6 +56,7 @@ public class StatementController {
      * @param min       the min amount
      * @param max       the max amount
      * @return the statement by date
+     * @throws DateNotinvaledFormatException the date notinvaled format exception
      */
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
@@ -83,6 +81,13 @@ public class StatementController {
         }
 
     }
+
+    /**
+     * Gets all statements.
+     *
+     * @param accountId the account id
+     * @return the all statements
+     */
     @GetMapping("/yourStatements")
     @PreAuthorize("hasRole('USER')")
     public ResponseModel  getAllStatements( @RequestParam Long accountId) {

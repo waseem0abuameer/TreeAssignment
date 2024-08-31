@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
  * file utilities.
  *
  * @author Waseem abuameer
- * @since 12/1/2021
  */
 public final class FileUtils {
 

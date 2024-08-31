@@ -10,10 +10,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The type Statement service.
+ */
 @Service
 public class StatementService {
     private StatementRepository statementRepository;
 
+    /**
+     * Instantiates a new Statement service.
+     *
+     * @param statementRepository the statement repository
+     */
     public StatementService(StatementRepository statementRepository) {
         this.statementRepository = statementRepository;
     }
@@ -28,6 +36,12 @@ public class StatementService {
         return statementRepository.save(statement);
     }
 
+    /**
+     * Find all statements list.
+     *
+     * @param accountId the account id
+     * @return the list
+     */
     public List<Statement> findAllStatements(Long accountId) {
         LocalDate toDate = LocalDate.now();
         LocalDate fromDate = toDate.withMonth(toDate.getMonthValue() - 3);
@@ -36,6 +50,17 @@ public class StatementService {
 
     }
 
+    /**
+     * Find all by date field between list.
+     *
+     * @param accountId the account id
+     * @param fromDate  the from date
+     * @param toDate    the to date
+     * @param min       the min
+     * @param max       the max
+     * @return the list
+     * @throws DateNotinvaledFormatException the date notinvaled format exception
+     */
     public List<Statement> findAllByDateFieldBetween(Long accountId, String fromDate, String toDate, String min, String max) throws DateNotinvaledFormatException {
         LocalDate parsedFromDate = parseDate(fromDate);
         LocalDate parsedToDate = parseDate(toDate);

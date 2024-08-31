@@ -2,22 +2,17 @@ package com.example.treeassignment.controller;
 
 
 import com.example.treeassignment.handler.AccountNotFoundException;
-import com.example.treeassignment.handler.DateNotinvaledFormatException;
 import com.example.treeassignment.model.Account;
 import com.example.treeassignment.model.ResponseModel;
 import com.example.treeassignment.model.dto.AccountDTO;
 import com.example.treeassignment.service.AccountService;
 import com.example.treeassignment.service.mapper.AccountMapper;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.login.AccountException;
-import java.util.HashMap;
+
 import java.util.List;
 
 @RestController
